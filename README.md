@@ -57,7 +57,18 @@ npm run dev
 <p align="right"><a href="#readme-top">Back to top</a></p>
 
 ## Deployment (Firebase)
-
+Build the project:
+```sh
+npm run build
+```
+Login to firebase:
+```sh
+firebase login
+```
+Initialize the project and deploy:
+```sh
+npm run deploy
+```
 
 ## Contributing 
 1. **Fork** the repository
