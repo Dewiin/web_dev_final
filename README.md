@@ -56,6 +56,8 @@ npm run dev
 ```
 <p align="right"><a href="#readme-top">Back to top</a></p>
 
+## Deployment (Firebase)
+
 
 ## Contributing 
 1. **Fork** the repository
