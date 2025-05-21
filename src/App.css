@@ -20,6 +20,7 @@ input {
   justify-content: center;
   flex-wrap: wrap;
   gap: 2vw;
+  height: 100%;
 }
 
 .notes-view > div {
