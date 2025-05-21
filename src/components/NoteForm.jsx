@@ -1,7 +1,7 @@
 import { useState } from "react"
-import { db } from '../firebase.js';
+import { auth, db } from '../firebase.js';
 import { collection, addDoc } from 'firebase/firestore';
-
+import { signOut } from "firebase/auth";
 
 export function NoteForm( {user} ) {
     const [note, setNote] = useState("");
@@ -25,14 +25,27 @@ export function NoteForm( {user} ) {
         }
     }; 
 
+    function handleLogout() {
+        signOut(auth)
+        .then(() => {
+            console.log("User has succesfully logged out.");
+        })
+        .catch((error) => {
+            console.error("User failed to log out", error);
+        });
+    }
+
     return (
-        <form className="notes-form" onSubmit={e => handleSubmit(e)}>
-            <input
-            value={note}
-            onChange={(e) => {setNote(e.target.value)}}
-            placeholder="Write a note..."
-            />   
-            <button type="submit">Add Note</button>
-        </form>
+        <div className="notes-form">
+            <form onSubmit={e => handleSubmit(e)}>
+                <input
+                value={note}
+                onChange={(e) => {setNote(e.target.value)}}
+                placeholder="Write a note..."
+                />   
+                <button type="submit">Add Note</button>
+            </form>
+            <p className="logout" onClick={handleLogout} >Log Out</p>
+        </div>
     )
 }
