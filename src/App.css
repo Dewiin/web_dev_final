@@ -1,6 +1,7 @@
 #root {
   margin: 0 auto;
   text-align: center;
+  height: 100vh;
 }
 
 input {
@@ -9,8 +10,12 @@ input {
   border-radius: var(--border-radius);
 }
 
-.notes-view {
+.notes-form {
   margin: 10vh 0;
+}
+
+.notes-view {
+  margin: 10vh;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -24,10 +29,11 @@ input {
 }
 
 .title-card {
-  position: absolute;
   width: 100%;
   margin: 1rem 0;
-  top: 0;
-  left: 0;
   font-size: 4em;
+}
+
+.auth-form > p {
+  font-size: 32px;
 }

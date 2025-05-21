@@ -3,7 +3,7 @@ import { db } from '../firebase.js';
 import { collection, addDoc } from 'firebase/firestore';
 
 
-export function NoteForm() {
+export function NoteForm( {user} ) {
     const [note, setNote] = useState("");
 
     async function handleSubmit(e) {
@@ -14,7 +14,7 @@ export function NoteForm() {
         }
 
         try { 
-            await addDoc(collection(db, "notes"), {
+            await addDoc(collection(db, "users", user.uid, "notes"), {
                 content: note
             })
             console.log("Successfully added note: ", note);
@@ -26,7 +26,7 @@ export function NoteForm() {
     }; 
 
     return (
-        <form onSubmit={e => handleSubmit(e)}>
+        <form className="notes-form" onSubmit={e => handleSubmit(e)}>
             <input
             value={note}
             onChange={(e) => {setNote(e.target.value)}}

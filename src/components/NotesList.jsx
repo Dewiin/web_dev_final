@@ -8,12 +8,12 @@ import {
   updateDoc
 } from 'firebase/firestore';
 
-export function NotesList() {
+export function NotesList( {user} ) {
     const [notes, setNotes] = useState([]);
 
     async function fetchNotes() {
         try {
-            const snapshot = await getDocs(collection(db, "notes"));
+            const snapshot = await getDocs(collection(db, "users", user.uid, "notes"));
             setNotes(snapshot.docs.map(doc => ({...doc.data(), id: doc.id})));
         }
         catch (error) {
@@ -23,12 +23,12 @@ export function NotesList() {
 
     useEffect(() => {
         fetchNotes();
-    }, [notes]);
+    });
 
     async function handleUpdate(originalContent, id) {
         const newContent = prompt("Edit content:", originalContent);
         try {
-            await updateDoc(doc(db, "notes", id), {content: newContent});
+            await updateDoc(doc(db, "users", user.uid, "notes", id), {content: newContent});
             fetchNotes();
         }
         catch (error) {
@@ -38,7 +38,7 @@ export function NotesList() {
 
     async function handleDelete(id) {
         try {
-            await deleteDoc(doc(db, "notes", id));
+            await deleteDoc(doc(db, "users", user.uid, "notes", id));
             fetchNotes();
         }
         catch (error) {
@@ -51,7 +51,7 @@ export function NotesList() {
             {notes.map(doc => (
                 <div key={doc.id}>
                     <p>{doc.content}</p>
-                    <button onClick={() => handleUpdate(doc.data, doc.id)}>Edit</button>
+                    <button onClick={() => handleUpdate(doc.content, doc.id)}>Edit</button>
                     <button onClick={() => handleDelete(doc.id)}>Delete</button>
                 </div>
             ))
