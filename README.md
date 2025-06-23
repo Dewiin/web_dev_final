@@ -14,6 +14,7 @@
   <li>
     <a href="#installation--setup">Installation & Setup</a>
   </li>
+  <li><a href="#demo">Demo</a></li>
   <li><a href="#contributing">Contributing</a></li>
   <li><a href="#license">License</a></li>
 </ol>
@@ -69,6 +70,12 @@ Initialize the project and deploy:
 ```sh
 npm run deploy
 ```
+## Demo
+<div align="center">
+  <img src="./src/assets/demo.png" alt="demo video">
+</div>
+
+<p align="right"><a href="#readme-top">Back to top</a></p>
 
 ## Contributing 
 1. **Fork** the repository
